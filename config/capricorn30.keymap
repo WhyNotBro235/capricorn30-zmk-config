@@ -1,0 +1,97 @@
+/*
+ * Copyright (c) 2022 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+#define DEF_L 0
+#define PUN_L 1
+#define SHC_L 2
+#define FNC_L 3
+#define NUM_L 4
+
+// Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
+&lt { quick_tap_ms = <200>; };
+
+/ {
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "homerow mods";
+            #binding-cells = <2>;
+            tapping_term_ms = <225>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+        combo_z {
+            timeout-ms = <50>;
+            key-positions = <20 21>;
+            bindings = <&kp Z>;
+        };
+        combo_b {
+            timeout-ms = <50>;
+            key-positions = <21 22>;
+            bindings = <&kp B>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+                           &kp L      &kp G       &kp D           &kp V                &kp Z            &kp F          &kp Y       &kp P
+                &hm LGUI O &hm LALT R &hm LCTRL T &hm LSHFT H                                           &hm RSHFT S    &hm RCTRL I &hm LALT N &hm RGUI A
+                &kp QUOT   &kp J      &kp C       &kp M           &kp K                &kp Q            &kp W          &kp X       &kp B      &kp U
+                                                  &lt NUM_L BKSP  &lt SHC_L SPACE      &lt PUN_L E      &lt FNC_L BKSP
+            >;
+        };
+
+        pun_layer {
+            label = "Nav";
+            bindings = <
+                           &trans     &trans      &trans          &trans               &trans           &trans         &trans      &trans
+                &trans     &trans     &trans      &trans                                                &trans         &trans      &trans     &trans
+                &trans     &trans     &trans      &trans          &trans               &trans           &trans         &trans      &trans     &trans
+                                                  &trans          &trans               &trans           &trans
+            >;
+        };
+
+        shc_layer {
+            label = "Num";
+            bindings = <
+                           &trans     &trans      &trans          &trans               &trans           &trans         &trans      &trans
+                &trans     &trans     &trans      &trans                                                &trans         &trans      &trans     &trans
+                &trans     &trans     &trans      &trans          &trans               &trans           &trans         &trans      &trans     &trans
+                                                  &trans          &trans               &trans           &trans
+            >;
+        };
+
+        fnc_layer {
+            label = "Sym";
+            bindings = <
+                           &trans     &trans      &trans          &trans               &trans           &trans         &trans      &trans
+                &trans     &trans     &trans      &trans                                                &trans         &trans      &trans     &trans
+                &trans     &trans     &trans      &trans          &trans               &trans           &trans         &trans      &trans     &trans
+                                                  &trans          &trans               &trans           &trans
+            >;
+        };
+
+        num_layer {
+            label = "Sym";
+            bindings = <
+                           &trans     &trans      &trans          &trans               &trans           &trans         &trans      &trans
+                &trans     &trans     &trans      &trans                                                &trans         &trans      &trans     &trans
+                &trans     &trans     &trans      &trans          &trans               &trans           &trans         &trans      &trans     &trans
+                                                  &trans          &trans               &trans           &trans
+            >;
+        };
+    };
+};
