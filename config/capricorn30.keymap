@@ -47,9 +47,9 @@
 
         default_layer {
             bindings = <
-                            &kp L       &kp G        &kp D           &kp V            &kp Z        &kp F        &kp Y        &kp P
-                &hm LGUI O  &hm LALT R  &hm LCTRL T  &hm LSHFT H                                   &hm RSHFT S  &hm RCTRL I  &hm LALT N  &hm RGUI A
-                &kp QUOT    &kp J       &kp C        &kp M           &kp K            &kp Q        &kp W        &kp X        &kp B       &kp U
+                            &kp L       &kp G        &kp D           &kp V            &kp Z        &kp F          &kp Y        &kp P
+                &hm LGUI O  &hm LALT R  &hm LCTRL T  &hm LSHFT H                                   &hm RSHFT S    &hm RCTRL I  &hm LALT N  &hm RGUI A
+                &kp QUOT    &kp J       &kp C        &kp M           &kp K            &kp Q        &kp W          &kp X        &kp B       &kp U
                                                      &lt NUM_L BKSP  &lt SHC_L SPACE  &lt PUN_L E  &lt FNC_L RET
             >;
         };
@@ -77,10 +77,10 @@
         fnc_layer {
             label = "Fnc";
             bindings = <
-                          &none     &none      &none           &none  &kp F10  &kp F11  &kp F12  &kp F13
-                &kp LGUI  &kp LALT  &kp LCTRL  &hm LSHFT CAPS                  &kp F5   &kp F6   &kp F7   &kp F8
-                &none     &none     &none      &none           &none  &kp F9   &kp F1   &kp F2   &kp F3   &kp F4
-                                               &none           &none  &none    &trans
+                              &bt BT_PRV    &bt BT_CLR    &bt BT_NXT      &none         &kp F10  &kp F11  &kp F12  &kp F13
+                &kp LGUI      &kp LALT      &kp LCTRL     &hm LSHFT CAPS                         &kp F5   &kp F6   &kp F7   &kp F8
+                &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &none         &kp F9   &kp F1   &kp F2   &kp F3   &kp F4
+                                                          &none           &bt BT_SEL 4  &none    &trans
             >;
         };
 
