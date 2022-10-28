@@ -1,0 +1,8 @@
+file_format: "1"
+id: capricorn30
+name: Capricorn30
+type: shield
+url: https://github.com/WhyNotBro235/Capricorn30
+requires: [seeed_xiao]
+features:
+  - keys
