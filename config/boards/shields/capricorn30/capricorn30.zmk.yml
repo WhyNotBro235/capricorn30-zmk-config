@@ -2,7 +2,7 @@ file_format: "1"
 id: capricorn30
 name: Capricorn30
 type: shield
-url: https://github.com/WhyNotBro235/Capricorn30
+url: https://github.com/WhyNotBro235/capricorn30-zmk-config
 requires: [seeed_xiao]
 features:
   - keys
