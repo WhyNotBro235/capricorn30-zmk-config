@@ -1,0 +1,97 @@
+/*
+ * Copyright (c) 2022 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+#define DEF_L 0
+#define PUN_L 1
+#define SHC_L 2
+#define FNC_L 3
+#define NUM_L 4
+
+// Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
+&lt { quick_tap_ms = <200>; };
+
+/ {
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "homerow mods";
+            #binding-cells = <2>;
+            tapping_term_ms = <250>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+        combo_z {
+            timeout-ms = <50>;
+            key-positions = <20 21>;
+            bindings = <&kp Z>;
+        };
+        combo_b {
+            timeout-ms = <50>;
+            key-positions = <21 22>;
+            bindings = <&kp B>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+                            &kp L       &kp G        &kp D           &kp V            &kp Z        &kp F          &kp Y        &kp P
+                &hm LGUI O  &hm LALT R  &hm LCTRL T  &hm LSHFT H                                   &hm RSHFT S    &hm RCTRL I  &hm LALT N  &hm RGUI A
+                &kp QUOT    &kp J       &kp C        &kp M           &kp K            &kp Q        &kp W          &kp X        &kp B       &kp U
+                                                     &lt NUM_L BKSP  &lt SHC_L SPACE  &lt PUN_L E  &lt FNC_L RET
+            >;
+        };
+
+        pun_layer {
+            label = "Pun";
+            bindings = <
+                               &kp AMPS        &kp EXCL       &kp QMARK        &kp BSLH   &kp C_VOL_UP  &none       &kp UP    &none
+                &hm LGUI FSLH  &hm LALT MINUS  &hm LCTRL DOT  &hm LSHFT COMMA                           &kp LEFT    &kp DOWN  &kp RIGHT   &none
+                &kp TILDE      &kp UNDER       &kp COLON      &kp SEMI         &kp GRAVE  &kp C_VOL_DN  &kp C_PREV  &kp C_PP  &kp C_NEXT  &kp C_MUTE
+                                                              &kp DEL          &kp SPACE  &trans        &none
+            >;
+        };
+
+        shc_layer {
+            label = "Shc";
+            bindings = <
+                       &none  &none  &none  &none   &kp C_BRI_UP  &none           &kp PG_UP        &none
+                &none  &none  &none  &none                        &hm RSHFT HOME  &hm RCTRL PG_DN  &hm LALT END  &kp RGUI
+                &none  &none  &none  &none  &none   &kp C_BRI_DN  &none           &none            &none         &none
+                                     &none  &trans  &kp ESC       &kp TAB
+            >;
+        };
+
+        fnc_layer {
+            label = "Fnc";
+            bindings = <
+                              &bt BT_PRV    &bt BT_CLR    &bt BT_NXT      &none         &kp F10  &kp F11  &kp F12  &kp F13
+                &kp LGUI      &kp LALT      &kp LCTRL     &hm LSHFT CAPS                         &kp F5   &kp F6   &kp F7   &kp F8
+                &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &bt BT_SEL 4  &kp F9   &kp F1   &kp F2   &kp F3   &kp F4
+                                                          &none           &none         &none    &trans
+            >;
+        };
+
+        num_layer {
+            label = "Num";
+            bindings = <
+                         &kp N7  &kp N8  &kp N9  &kp PLUS   &kp ASTRK  &kp LBKT        &kp RBKT        &kp PIPE
+                &kp DOT  &kp N4  &kp N5  &kp N6                        &hm RSHFT LPAR  &hm RCTRL RPAR  &hm LALT PRCNT  &hm RGUI CARET
+                &kp N0   &kp N1  &kp N2  &kp N3  &kp MINUS  &kp FSLH   &kp DLLR        &kp AT          &kp HASH        &kp UNDER
+                                         &trans  &none      &kp EQUAL  &none
+            >;
+        };
+    };
+};
